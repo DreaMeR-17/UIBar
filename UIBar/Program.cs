@@ -4,7 +4,6 @@ namespace UIBar
 {
     internal class Program
     {
-        static void Main(string[] args)
         {
             int healthPercent = 60;
             int maxHealth = 10;
@@ -25,30 +24,38 @@ namespace UIBar
             ConsoleColor defaultColor = Console.BackgroundColor;
 
             int maxPercent = 100;
+            int firstIndex = 0;
+
+            char fillingBar = '#';
+            char emptyBar = '_';
 
             double value = maxValue / maxPercent * valuePercent;
 
             string bar = "";
 
-            for (int i = 0; i < value; i++)
-            {
-                bar += "#";
-            }
-
             Console.SetCursorPosition(0, position);
             Console.Write('[');
-            Console.BackgroundColor = color;
             Console.Write(bar);
+
+            Console.BackgroundColor = color;
+
+            FillBar(firstIndex, value, fillingBar);
+
             Console.BackgroundColor = defaultColor;
 
             bar = "";
 
-            for (double i = value; i < maxValue; i++)
-            {
-                bar += "_";
-            }
+            FillBar(value, maxValue, emptyBar);
 
             Console.Write(bar + ']');
+        }
+
+        static void FillBar(double firstIndex, double lastIndex, char filling)
+        {
+            for (double i = firstIndex; i < lastIndex; i++)
+            {
+                Console.Write(filling);
+            }
         }
     }
 }
