@@ -10,23 +10,27 @@ namespace UIBar
     {
         static void Main(string[] args)
         {
-            int health = 6;
+            int healthPercent = 60;
             int maxHealth = 10;
 
-            int mana = 4;
+            int manaPercent = 40;
             int maxMana = 10;
 
-            int stamina = 5;
+            int staminaPercent = 50;
             int maxStamina = 10;
 
-            DrawBar(health, maxHealth, ConsoleColor.Green, 0);
-            DrawBar(mana, maxMana, ConsoleColor.Blue, 1);
-            DrawBar(stamina, maxStamina, ConsoleColor.Yellow, 2);
+            DrawBar(healthPercent, maxHealth, ConsoleColor.Green, 0);
+            DrawBar(manaPercent, maxMana, ConsoleColor.Blue, 1);
+            DrawBar(staminaPercent, maxStamina, ConsoleColor.Yellow, 2);
         }
 
-        static void DrawBar(int value, int maxValue, ConsoleColor color, int position)
+        static void DrawBar(int valuePercent, double maxValue, ConsoleColor color, int position)
         {
             ConsoleColor defaultColor = Console.BackgroundColor;
+
+            int maxPercent = 100;
+
+            double value = maxValue / maxPercent * valuePercent;
 
             string bar = "";
 
@@ -43,7 +47,7 @@ namespace UIBar
 
             bar = "";
 
-            for (int i = value; i < maxValue; i++)
+            for (double i = value; i < maxValue; i++)
             {
                 bar += "_";
             }
